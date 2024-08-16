@@ -12,7 +12,10 @@ function createMovieController() {
 $controllerName = $_GET['c'] ?? 'MovieController';
 $methodName = $_GET['m'] ?? 'getAllMovies';
 
-$namespace = 'src\\Movie\\';
+$namespace = match ($controllerName) {
+    'MovieController' => 'src\\Movie\\',
+    default => 'src\\',
+};
 
 $controllerClass = $namespace . $controllerName;
 
@@ -26,8 +29,10 @@ if (class_exists($controllerClass)) {
     if (method_exists($controller, $methodName)) {
         $controller->$methodName();
     } else {
-        echo "Method $methodName not found in class $controllerClass.";
+        $baseView = new \src\BaseView();
+        $baseView->display404();
     }
 } else {
-    echo "Class $controllerClass not found.";
+    $baseView = new \src\BaseView();
+    $baseView->display404();
 }

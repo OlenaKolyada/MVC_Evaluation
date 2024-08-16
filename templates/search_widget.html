@@ -1,8 +1,8 @@
-<form class="search" action="?c=MovieController&m=getMoviesByGenre" method="post">
+<form class="search" id="search_form" action="?c=MovieController&m=getMoviesByGenre" method="post">
 
     <div>
 
-        <select class="search_item" id="genre" name="genreSelect">
+        <select class="search_item" id="genre" name="genreSelect"  onchange="updateFormAction()">
             <option value="" disabled selected>Choisir un genre</option>
             <option value="comedie">Comédie</option>
             <option value="drame">Drame</option>
@@ -19,5 +19,5 @@
     </div>
     <button type="submit" class="btn-funky btn-dark search_item">Trouver</button>
 
-
 </form>
+
