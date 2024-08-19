@@ -24,13 +24,13 @@ class Repository
         );
     }
 
-    public function fetchAll(string $sql): array
+    public function query(string $sql): array
     {
         $stmt = $this->pdo->query($sql);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function fetchBy(string $sql, array $params = []): ?array
+    public function execute(string $sql, array $params = []): ?array
     {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);

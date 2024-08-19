@@ -15,7 +15,7 @@ readonly class Movie
     public function fetchAllMovies(): array
     {
         $sql = "SELECT * FROM `film`";
-        return $this->repository->fetchAll($sql);
+        return $this->repository->query($sql);
     }
 
     public function fetchMoviesByGenre(string $genre): array
@@ -27,6 +27,6 @@ readonly class Movie
                 WHERE g.genre = :genre";
         $params = [':genre' => $genre];
 
-        return $this->repository->fetchBy($sql, $params);
+        return $this->repository->execute($sql, $params);
     }
 }
