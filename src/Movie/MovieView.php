@@ -11,7 +11,7 @@ class MovieView extends View
     public function displayMovies(int $counter, array $movies): void
     {
         $content = dirname(__DIR__) . '/../templates/movie_list.html';
-        $title = 'Movie List'; // Le titre de la page
+        $title = 'Movie List';
         include dirname(__DIR__) . '/../templates/layout.html';
     }
 }
