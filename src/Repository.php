@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace src;
 
-class BaseRepository
+class Repository
 {
     protected \PDO $pdo;
 
@@ -12,7 +12,6 @@ class BaseRepository
     {
         $this->connectToDatabase();
     }
-
     private function connectToDatabase(): void
     {
         $config = require __DIR__ . '/../config.php';
@@ -24,4 +23,19 @@ class BaseRepository
             $dbConfig['password']
         );
     }
+
+    public function fetchAll(string $sql): array
+    {
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function fetchBy(string $sql, array $params = []): ?array
+    {
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+
 }

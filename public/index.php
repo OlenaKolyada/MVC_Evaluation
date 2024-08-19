@@ -2,10 +2,11 @@
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-function createMovieController() {
-    $movieRepository = new \src\Movie\MovieRepository();
+function createMovieController(): \src\Movie\MovieController
+{
+    $repository = new \src\Repository();
     $movieView = new \src\Movie\MovieView();
-    $movie = new \src\Movie\Movie($movieRepository);
+    $movie = new \src\Movie\Movie($repository);
     return new \src\Movie\MovieController($movie, $movieView);
 }
 
@@ -29,10 +30,10 @@ if (class_exists($controllerClass)) {
     if (method_exists($controller, $methodName)) {
         $controller->$methodName();
     } else {
-        $baseView = new \src\BaseView();
+        $baseView = new \src\View();
         $baseView->display404();
     }
 } else {
-    $baseView = new \src\BaseView();
+    $baseView = new \src\View();
     $baseView->display404();
 }

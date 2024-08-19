@@ -4,19 +4,29 @@ declare(strict_types=1);
 
 namespace src\Movie;
 
-class Movie
+use src\Repository;
+
+readonly class Movie
 {
     public function __construct(
-        private MovieRepository $movieRepository
+        private Repository $repository
     ) {
     }
     public function fetchAllMovies(): array
     {
-        return $this->movieRepository->selectAllMovies();
+        $sql = "SELECT * FROM `film`";
+        return $this->repository->fetchAll($sql);
     }
 
     public function fetchMoviesByGenre(string $genre): array
     {
-        return $this->movieRepository->selectMoviesByGenre($genre);
+        $sql = "SELECT f.*
+                FROM film f
+                JOIN appartenir a ON f.id_film = a.id_film
+                JOIN genre g ON a.id_genre = g.id_genre
+                WHERE g.genre = :genre";
+        $params = [':genre' => $genre];
+
+        return $this->repository->fetchBy($sql, $params);
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace src;
 
-class BaseView
+class View
 {
     public function display404(): void
     {

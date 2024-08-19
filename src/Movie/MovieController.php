@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace src\Movie;
 
-class MovieController
+readonly class MovieController
 {
     public function __construct(
-        private Movie $movie,
+        private Movie     $movie,
         private MovieView $movieView
     ) {
     }
@@ -30,5 +30,4 @@ class MovieController
         $counter = count($movies);
         $this->movieView->displayMovies($counter, $movies);
     }
-
 }

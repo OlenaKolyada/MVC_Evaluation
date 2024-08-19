@@ -9,7 +9,7 @@ class MovieView
     public function displayMovies(int $counter, array $movies): void
     {
         $content = dirname(__DIR__) . '/../templates/movie_list.html';
-        $title = 'Movie List';
+        $title = 'Movie List'; // Le titre de la page
         include dirname(__DIR__) . '/../templates/layout.html';
     }
 }
