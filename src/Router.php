@@ -10,6 +10,7 @@ readonly class Router
     {
         $controllerName = $_GET['c'] ?? 'MovieController';
         $methodName = $_GET['m'] ?? 'getAllMovies';
+
         $namespace = match ($controllerName) {
             'MovieController' => 'src\\Movie\\',
             default => 'src\\',
@@ -20,6 +21,9 @@ readonly class Router
         if (class_exists($controllerClass)) {
             $controller = new $controllerClass();
             $controller->$methodName();
+        } else {
+            $view = new View();
+            $view->display404();
         }
     }
 }
