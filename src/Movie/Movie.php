@@ -8,9 +8,9 @@ use src\Repository;
 
 readonly class Movie
 {
-    public function __construct(
-        private Repository $repository
-    ) {
+    private Repository $repository;
+    public function __construct() {
+        $this->repository = new Repository();
     }
     public function fetchAllMovies(): array
     {

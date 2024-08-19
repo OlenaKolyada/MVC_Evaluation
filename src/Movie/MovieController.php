@@ -6,10 +6,12 @@ namespace src\Movie;
 
 readonly class MovieController
 {
-    public function __construct(
-        private Movie     $movie,
-        private MovieView $movieView
-    ) {
+    private Movie $movie;
+    private MovieView $movieView;
+
+    public function __construct() {
+        $this->movie = new Movie();
+        $this->movieView = new MovieView();
     }
 
     public function getAllMovies(): void
