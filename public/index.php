@@ -1,39 +1,9 @@
 <?php
 
-require dirname(__DIR__) . '/vendor/autoload.php';
+declare(strict_types=1);
 
-function createMovieController(): \src\Movie\MovieController
-{
-    $repository = new \src\Repository();
-    $movieView = new \src\Movie\MovieView();
-    $movie = new \src\Movie\Movie($repository);
-    return new \src\Movie\MovieController($movie, $movieView);
-}
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-$controllerName = $_GET['c'] ?? 'MovieController';
-$methodName = $_GET['m'] ?? 'getAllMovies';
+use src\Router;
 
-$namespace = match ($controllerName) {
-    'MovieController' => 'src\\Movie\\',
-    default => 'src\\',
-};
-
-$controllerClass = $namespace . $controllerName;
-
-if (class_exists($controllerClass)) {
-    if ($controllerClass === $namespace . 'MovieController') {
-        $controller = createMovieController();
-    } else {
-        $controller = new $controllerClass();
-    }
-
-    if (method_exists($controller, $methodName)) {
-        $controller->$methodName();
-    } else {
-        $baseView = new \src\View();
-        $baseView->display404();
-    }
-} else {
-    $baseView = new \src\View();
-    $baseView->display404();
-}
+Router::run();

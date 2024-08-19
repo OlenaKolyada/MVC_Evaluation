@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace src\Movie;
 
-class MovieView
+use src\View;
+
+class MovieView extends View
 {
     public function displayMovies(int $counter, array $movies): void
     {
