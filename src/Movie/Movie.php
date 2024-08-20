@@ -6,7 +6,7 @@ namespace src\Movie;
 
 use src\Repository;
 
-readonly class Movie
+class Movie
 {
     private Repository $repository;
     public function __construct() {
