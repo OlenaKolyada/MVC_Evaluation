@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="CLI Arguments" tests="1" assertions="21" errors="0" failures="0" skipped="0" time="0.028777">
+    <testsuite name="tests\src\Movie\MovieTest" file="C:\wamp64\www\FunkyEvaluation\tests\Movie\MovieTest.php" tests="1" assertions="21" errors="0" failures="0" skipped="0" time="0.028777">
+      <testcase name="testFetchAllMovies" file="C:\wamp64\www\FunkyEvaluation\tests\Movie\MovieTest.php" line="22" class="tests\src\Movie\MovieTest" classname="tests.src.Movie.MovieTest" assertions="21" time="0.028777"/>
+    </testsuite>
+  </testsuite>
+</testsuites>

@@ -2,12 +2,17 @@
 
 declare(strict_types=1);
 
-namespace tests\Movie;
+namespace tests\src\Movie;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use src\Movie\Movie;
 
-class MovieTest extends TestCase
+#[CoversClass(Movie::class)]
+#[UsesClass(Movie::class)]
+
+final class MovieTest extends TestCase
 {
     public function testFetchAllMovies(): void
     {
@@ -21,4 +26,5 @@ class MovieTest extends TestCase
             $this->assertIsString($movie['titre'], 'Title should be a string');
         }
     }
+
 }
