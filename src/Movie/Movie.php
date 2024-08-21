@@ -12,11 +12,26 @@ class Movie
     public function __construct() {
         $this->repository = new Repository();
     }
+
     public function fetchAllMovies(): array
     {
         $sql = "SELECT * FROM `film`";
-        return $this->repository->query($sql);
+        $movies = $this->repository->query($sql);
+
+        $filteredMovies = array_filter($movies, function ($movie) {
+            if (isset($movie['titre']) && is_string($movie['titre'])) {
+                $trimmedTitle = trim($movie['titre']);
+                return $trimmedTitle !== '' && !ctype_digit($trimmedTitle);
+            }
+            return false;
+        });
+
+
+//        var_dump($filteredMovies, true);
+
+        return array_values($filteredMovies);
     }
+
 
     public function fetchMoviesByGenre(string $genre): array
     {
